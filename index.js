@@ -1,33 +1,20 @@
-// 引用linebot 套件
-import linebot from 'linebot'
-// 引用dotenv 套件
-import dotenv from 'dotenv'
-// 引用request套件(後端)
-import rp from 'request-promise'
+// 從內建http套件引用變數，取名為http
+// require 是 commosjs語法
+// const http = require('http')
+// import 是EMCAScript 語法
+// 必須要在node.js>13.0 且在package.json 加入 "type":"module",
+import http from 'http'
 
-// 讀取 .env檔
-dotenv.config()
-
-// 宣告機器人的資訊
-const bot = linebot({
-  channelId: process.env.CHANNEL_ID,
-  channelSecret: process.env.CHANNEL_SECRET,
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+const server = http.createServer((req, res) => {
+    // 回應狀態碼200成功
+    res.writeHead(200)
+    // 回應內容
+    res.write('hello')
+    // 回應結束
+    res.end()
 })
 
-// 當收到訊息時
-bot.on('message', async (event) => {
-  let msg = ''
-  try {
-    const data = await rp({ uri: 'https://bangumi.bilibili.com/web_api/timeline_global.json', json: true })
-    msg = data.seasons[0].title
-  } catch (error) {
-    msg = '發生錯誤'
-  }
-  event.reply(msg)
-})
-
-// 在port 啟動
-bot.listen('/', process.env.PORT, () => {
-  console.log('機器人已啟動')
+// 在port1234啟動，啟動後在console顯示訊息
+server.listen(1234, () => {
+    console.log('網頁伺服器已啟動:http://localhost:1234')
 })
