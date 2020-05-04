@@ -20,7 +20,7 @@ bot.on('message', async (event) => {
   let msg = ''
   try {
     const data = await rp({ uri: 'https://bangumi.bilibili.com/web_api/timeline_global', json: true })
-    msg = data.seasons[0].title
+    msg = data.result[0].title
   } catch (error) {
     msg = '發生錯誤'
   }
