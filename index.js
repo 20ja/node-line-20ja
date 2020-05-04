@@ -19,8 +19,8 @@ const bot = linebot({
 bot.on('message', async (event) => {
   let msg = ''
   try {
-    const data = await rp({ uri: 'https://bangumi.bilibili.com/web_api/timeline_global.json', json: true })
-    msg = data.result[0].seasons[0].title
+    const data = await rp({ uri: 'https://kktix.com/events.json', json: true })
+    msg = data.entry[0].title
   } catch (error) {
     msg = '發生錯誤'
   }
