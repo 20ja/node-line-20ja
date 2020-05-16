@@ -84,10 +84,8 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      for (let i = 0; i < Object.keys(result).length; i++) {
-        msg = result.Lyrics[i]
-
-      }
+      console.log(result.length)
+      msg = result
 
 
     } catch (error) {
