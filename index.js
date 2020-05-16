@@ -85,7 +85,7 @@ const lyrics = async (songid) => {
         }
       })
 
-      msg = result.Name
+      msg = result
 
 
     } catch (error) {
