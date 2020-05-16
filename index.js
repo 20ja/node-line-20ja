@@ -84,8 +84,10 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      msg = result.Translate_zh
+      for (let i = 0; i < Object.keys(result).length; i++) {
+        msg = result.Lyrics[i]
 
+      }
 
 
     } catch (error) {
