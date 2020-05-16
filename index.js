@@ -84,11 +84,8 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      for (let i = 0; i < result.length; i++) {
-        for (let j = 0; j < result[i].Lyrics; j++) {
-          msg = result[i].Lyrics[j]
-        }
-      }
+      msg = result.Translate_zh
+
 
 
     } catch (error) {
