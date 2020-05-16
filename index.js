@@ -85,7 +85,7 @@ const lyrics = async (songid) => {
         }
       })
 
-      msg = result.lyrics.Lyrics
+      msg = result.Lyrics.join();
 
     } catch (error) {
       msg = error.message
