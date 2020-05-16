@@ -84,7 +84,7 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      console.log(result.length)
+
       msg = result.Name
 
 
