@@ -84,8 +84,7 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-
-      msg = result
+      msg = result.Lyrics.join('/n');
 
 
     } catch (error) {
