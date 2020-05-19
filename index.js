@@ -74,6 +74,7 @@ const lyrics = async (songid) => {
   } else {
     try {
       const result = await rp({
+        method: 'POST',
         uri: 'https://www.jpmarumaru.com/tw/api/json_JPSongTrack.asp',
         json: true,
         headers: {
@@ -84,15 +85,18 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      msg = result.Lyrics.join('/n');
 
+      console.log(result.Lyrics)
 
+      msg = result.Lyrics.join('/n')
     } catch (error) {
       msg = error.message
     }
   }
   return msg
 }
+
+lyrics(13620)
 
 bot.on('message', async (event) => {
   let msg
