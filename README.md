@@ -11,6 +11,6 @@
 4.即可查詢到日文歌曲的中日歌詞 <br>
 
 ### 串api網址
-*marumaru 網站* 
-歌曲：https://www.jpmarumaru.com/tw/JPSongList.asp 
-歌詞：https://www.jpmarumaru.com/tw/api/json_JPSongTrack.asp 
+*marumaru 網站* <br />
+歌曲：https://www.jpmarumaru.com/tw/JPSongList.asp <br />
+歌詞：https://www.jpmarumaru.com/tw/api/json_JPSongTrack.asp <br />
