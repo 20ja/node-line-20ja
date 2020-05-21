@@ -77,7 +77,7 @@ const lyrics = async (songid) => {
         clyrics.push(alyrics[i])
         clyrics.push(blyrics[i])
       }
-      msg = clyrics
+      msg = clyrics.join('\n')
       console.log(msg)
       // msg += `${result.Lyrics.join('\n')}。\n中文:\n${result.Translate_zh.join('\n')}`
       // console.log(msg)
