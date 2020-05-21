@@ -86,7 +86,7 @@ const lyrics = async (songid) => {
         }
       })
       for (let i = 0; i < result.Lyrics.length; i++) {
-        msg = `${result.Lyrics[i]}<br>`
+        msg = `${result.Lyrics[i]}\n`
       }
       // msg = result.Lyrics.join()
     } catch (error) {
@@ -116,8 +116,8 @@ const zhlyrics = async (songid) => {
         }
       })
       for (let i = 0; i < result.Translate_zh.length; i++) {
-        msg = `${result.Translate_zh[i]}<br>`
-        console.log(result.Translate_zh[i])
+        msg = `${result.Translate_zh[i]}\n`
+        console.log(msg)
       }
       // msg = result.Lyrics.join()
     } catch (error) {
