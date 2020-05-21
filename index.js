@@ -51,21 +51,6 @@ const search = async (keyword) => {
   return msg
 }
 
-// 當收到訊息時
-// bot.on('message', async (event) => {
-//   let msg = ''
-//   try {
-//     const data = await rp({ uri: 'https://bangumi.bilibili.com/web_api/timeline_global.json', json: true })
-//     msg = data.result[0].seasons[0].title
-//   } catch (error) {
-//     msg = '發生錯誤'
-//   }
-//   event.reply(msg)
-// })
-
-// 收到訊息
-// const msg = ''
-
 const lyrics = async (songid) => {
   let msg = ''
   console.log(songid)
@@ -85,50 +70,23 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-      // for (let i = 0; i < result.Lyrics.length; i++) {
-      //   msg = `${result.Lyrics[i]}\n`
-      //   console.log(msg)
-      // }
-      msg += `${result.Lyrics.join('\n')}，${result.Translate_zh.join('\n')}`
+      const alyrics = result.Lyrics.splice(',')
+      const blyrics = result.Translate_zh.splice(',')
+      const clyrics = []
+      for (let i = 0; i < alyrics.length; i++) {
+        clyrics.push(alyrics[i])
+        clyrics.push(blyrics[i])
+      }
+      msg = clyrics
       console.log(msg)
+      // msg += `${result.Lyrics.join('\n')}。\n中文:\n${result.Translate_zh.join('\n')}`
+      // console.log(msg)
     } catch (error) {
       msg = error.message
     }
   }
   return msg
 }
-
-// const zhlyrics = async (songid) => {
-//   let msg = ''
-//   console.log(songid)
-//   if (isNaN(songid)) {
-//     msg = '請輸入 id'
-//   } else {
-//     try {
-//       const result = await rp({
-//         method: 'POST',
-//         uri: 'https://www.jpmarumaru.com/tw/api/json_JPSongTrack.asp',
-//         json: true,
-//         headers: {
-//           Referer: `https://www.jpmarumaru.com/tw/JPSongPlay-${songid}.html`,
-//           'Content-Type': 'application/x-www-form-urlencoded'
-//         },
-//         form: {
-//           SongPK: songid
-//         }
-//       })
-//       for (let i = 0; i < result.Translate_zh.length; i++) {
-//         msg = `${result.Translate_zh[i]}\n`
-//         console.log(msg)
-//       }
-//       // msg = result.Lyrics.join()
-//     } catch (error) {
-//       msg = error.message
-//     }
-//   }
-//   return msg
-// }
-// zhlyrics(11243)
 
 bot.on('message', async (event) => {
   let msg
