@@ -85,10 +85,10 @@ const lyrics = async (songid) => {
           SongPK: songid
         }
       })
-
-      console.log(result.Lyrics)
-
-      msg = result.Lyrics.join('/n')
+      for (let i = 0; i < result.Lyrics.length; i++) {
+        msg = `${result.Lyrics[i]}<br>`
+      }
+      // msg = result.Lyrics.join()
     } catch (error) {
       msg = error.message
     }
@@ -96,12 +96,42 @@ const lyrics = async (songid) => {
   return msg
 }
 
-lyrics(13620)
+const zhlyrics = async (songid) => {
+  let msg = ''
+  console.log(songid)
+  if (isNaN(songid)) {
+    msg = '請輸入 id'
+  } else {
+    try {
+      const result = await rp({
+        method: 'POST',
+        uri: 'https://www.jpmarumaru.com/tw/api/json_JPSongTrack.asp',
+        json: true,
+        headers: {
+          Referer: `https://www.jpmarumaru.com/tw/JPSongPlay-${songid}.html`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+          SongPK: songid
+        }
+      })
+      for (let i = 0; i < result.Translate_zh.length; i++) {
+        msg = `${result.Translate_zh[i]}<br>`
+        console.log(result.Translate_zh[i])
+      }
+      // msg = result.Lyrics.join()
+    } catch (error) {
+      msg = error.message
+    }
+  }
+  return msg
+}
 
 bot.on('message', async (event) => {
   let msg
   if (event.message.text.includes('搜尋')) msg = await search(event.message.text.slice(3))
-  else if (event.message.text.includes('歌詞')) msg = await lyrics(event.message.text.slice(3))
+  else if (event.message.text.includes('日文歌詞')) msg = await lyrics(event.message.text.slice(3))
+  else if (event.message.text.includes('中文歌詞')) msg = await zhlyrics(event.message.text.slice(3))
   event.reply(msg)
 })
 
